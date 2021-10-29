@@ -1,0 +1,1 @@
+max(enumerate([5, 4]), key=(lambda x: x[1]))[0]
