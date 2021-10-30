@@ -1,6 +1,18 @@
+import random
 from typing import List, Tuple
 
-from src.dna import DNA
+class DNA():    #! test
+    def __init__(self, min_spd:float, min_tar:float, min_vis:int):
+        self.speed = random.uniform(min_spd, 2)
+        # self.speed = 5
+        self._targeting = random.uniform(min_tar, 1)
+        # self._targeting = 1
+        self.vision = random.randint(min_vis, 3)
+        # self.vision = 3
+
+        @property
+        def targeting(self)->bool:
+            return self._targeting > random.random()
 
 class Fish():
     _CHAR = '🟠'
