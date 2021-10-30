@@ -1,7 +1,6 @@
 from typing import Type
-import unittest
-from src.fish import Fish, DNA
-# import pytest
+from src.fish import Fish
+from src.dna import DNA
 
 def test_fish_creates_DNA():
     fish = Fish((1, 4))

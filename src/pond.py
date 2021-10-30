@@ -1,8 +1,9 @@
 from itertools import permutations
 from typing import List, Tuple
 from copy import deepcopy
-from fish import Fish
-from food import Food
+
+from src.fish import Fish
+from src.food import Food
 
 class Pond():
     CLEAR = '⚪'

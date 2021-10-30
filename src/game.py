@@ -3,9 +3,10 @@ import time
 from typing import Tuple
 from math import trunc, ceil
 import re
-from pond import Pond
-from fish import Fish
-from food import Food
+
+from src.pond import Pond
+from src.fish import Fish
+from src.food import Food
 
 class Game():       #! test
     def __init__(self, size:Tuple[int, int]):
