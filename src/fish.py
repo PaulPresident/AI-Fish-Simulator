@@ -5,8 +5,8 @@ from src.dna import DNA
 class Fish():
     _CHAR = '🟠'
 
-    def __init__(self, coor:Tuple[int, int], min_dna_values:Tuple[float, float, int]=(0.1, 0, 0)):
-        self.dna = DNA(*min_dna_values)
+    def __init__(self, coor:Tuple[int, int], min_dna_values:Tuple[float, float, int]=(0.1, 0, 0), evl_spd:int=1):
+        self.dna = DNA(*min_dna_values, evl_spd=evl_spd)
         self._coor = coor       # (y, x)
         self.old_coor = (None, None)
         self._moves = 0

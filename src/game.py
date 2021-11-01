@@ -9,10 +9,10 @@ from src.fish import Fish
 from src.food import Food
 
 class Game():       #! test
-    def __init__(self, size:Tuple[int, int]):
+    def __init__(self, size:Tuple[int, int], evolution_speed:int=1):
         self._max = tuple(x-1 for x in size)
         self._pond = Pond(*size)
-        self._fish_school = [Fish(choice(self._pond.get_clear())) for _ in range(trunc(self._pond._size*.1))]
+        self._fish_school = [Fish(choice(self._pond.get_clear()), evl_spd=evolution_speed) for _ in range(trunc(self._pond._size*.1))]
         self._food = [Food(choice(self._pond.get_clear())) for _ in range(trunc(len(self._fish_school)/2))]
 
     def _start(self):
