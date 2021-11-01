@@ -27,7 +27,7 @@ class Game():       #! test
 
     def _ai(self, fish):
         '''responsible for moving fish towards food if has targeting capability and vision allows'''
-        if fish.dna._targeting and fish.dna.vision:
+        if fish.dna.target and fish.dna.vision:
             vision = self._pond.get(list(fish.coor), fish.dna.vision)
             for objs in vision:
                 for obj in objs:
@@ -75,13 +75,13 @@ class Game():       #! test
         for fish in self._fish_school:
             fish.food = 0
 
-    def _evolve(self):
+    def _evolve(self):      #! change to averages = mins instead of mins
         '''breeds good fish creating new fish with better DNA'''
         self._fish_school += [
             Fish(choice(self._pond.get_clear()), (
                 min(genes)
                 for genes in zip(*[
-                    [fish.dna.speed, fish.dna._targeting, fish.dna.vision]
+                    [fish.dna.speed, fish.dna._target, fish.dna._vision]
                     for fish in self._fish_school
                 ])
             ))
@@ -106,10 +106,10 @@ class Game():       #! test
                     self._natural_selection()
                     self._evolve()
                     i += 1
-            print(list(zip(["speed", "targeting", "vision"], [
-                min(genes)
+            print(list(zip(["speed", "target", "vision"], [
+                sum(genes)/len(genes)
                 for genes in zip(*[
-                    [fish.dna.speed, fish.dna._targeting, fish.dna.vision]
+                    [fish.dna.speed, fish.dna._target, fish.dna._vision]
                     for fish in self._fish_school
                 ])
             ])))
