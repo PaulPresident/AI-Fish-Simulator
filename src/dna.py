@@ -1,5 +1,5 @@
 from math import trunc
-from random import uniform as randnum
+from random import uniform
 
 class DNA():    #! test
     MAX_SPEED = 5               # max speed value for the speed strand
@@ -18,7 +18,7 @@ class DNA():    #! test
 
     @property
     def target(self):
-        return self._target > randnum(0, 1)
+        return self._target > uniform(0, 1)
 
     @property
     def vision(self):
@@ -27,9 +27,9 @@ class DNA():    #! test
     @staticmethod
     def rndm_num_gen(min_:float, max_:float, difficulty:float, spd:float)->float:
         '''random number generator algorithm that keeps the values generated closer to the min to avoid early convergence'''
-        first = randnum(min_, max_)
+        first = uniform(min_, max_)
         val2min_diff = trunc(first*spd-(min_/difficulty)*spd)    # number of times random.uniform will be run
         return min([
-            randnum(min_, max_)
+            uniform(min_, max_)
             for _ in range(max(sorted([0, val2min_diff])))
         ]+[first])

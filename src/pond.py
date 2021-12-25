@@ -1,6 +1,5 @@
 from itertools import permutations
-from typing import List, Tuple
-from copy import deepcopy
+from typing import List
 
 from src.fish import Fish
 from src.food import Food
@@ -11,9 +10,8 @@ class Pond():
 
     def __init__(self, row:int, column:int):
         self._size = row * column
-        self._max_coor = row-1, column-1    # coors start from 0
+        self._max_coor = row, column
         self._pond = [[[self.CLEAR] for _ in range(column)] for _ in range(row)]     # creates a map based on given size
-        self._pond_reset = [[[self.CLEAR] for _ in range(column)] for _ in range(row)]
 
     def __str__(self):
         '''creates a string version of the nested map variable'''
@@ -37,17 +35,14 @@ class Pond():
             for move_y, move_x in (self.ADJACENT_NODES*idx)[i::4]:      # produces adequate # of the adjacent nodes and splice to get next adjacent node in the clockwise rotation
                 coor = [coor[0] + move_y, coor[1] + move_x]         # moves the pointer to the next closest node
                 if coor[0] in range(len(self._pond[0])) and coor[1] in range(len(self._pond[1])):       # makes sure the coor is not less than 0
+                    #! causes indexOutOfRange Error when coordinates are different e.g. 7, 8
                     result.append(self._pond[coor[0]][coor[1]])
 
         return result + self.get(coor, r, idx+1)
 
     def update(self, obj):      #! test
         '''updates the specified object in the pond'''
-        # if obj.coor[0] > self._max_coor[0] or obj.coor[1] > self._max_coor[1] or :
-        #     obj.coor = obj.old_coor
-        #     obj.old_coor = obj.coor
-        #     obj._moves += 1
-        print(obj.coor)
+        # print(obj.coor)   #! print test
         if hasattr(obj, 'old_coor') and isinstance(obj.old_coor[0], int):
             self._pond[obj.old_coor[0]][obj.old_coor[1]].pop(self._pond[obj.old_coor[0]][obj.old_coor[1]].index(obj))
         self._pond[obj.coor[0]][obj.coor[1]].append(obj)
@@ -67,4 +62,4 @@ class Pond():
         ]
 
     def reset(self):        #! test
-        self._pond = deepcopy(self._pond_reset)
+        self._pond = [[[self.CLEAR] for _ in range(self._max_coor[1])] for _ in range(self._max_coor[0])]

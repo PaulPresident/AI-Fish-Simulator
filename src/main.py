@@ -1,5 +1,5 @@
 from src.game import Game
 
 
-game = Game((10, 10))
+game = Game((8, 8))
 game.play()
