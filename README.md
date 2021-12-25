@@ -11,7 +11,8 @@ The evolutionary algorithm can be easily modified to simulate faster/slower evol
 - worst 25% of fish will be eliminated from the pond in favor of newly breed fish with better DNA
 - run 1 generation
 - skip x generations
+- data visualization at the end of each round
 
 ## Future:
-- better UI (display generation, etc)
-- skip should not print the progress
+- allow rectangular ponds
+- allow user to input a function as the pond size
